@@ -1,3 +1,4 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
+          backgroundColor: Colors.indigo[50],
           primarySwatch: Colors.indigo,
           appBarTheme: const AppBarTheme(
               centerTitle: false,
@@ -53,6 +55,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _bottomNavIndex = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -74,6 +77,18 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+        icons: [Icons.home_filled, Icons.insert_chart_outlined_sharp, Icons.credit_card, Icons.person],
+        activeIndex: _bottomNavIndex,
+        gapLocation: GapLocation.center,
+        activeColor: Colors.indigo,
+        inactiveColor: Colors.grey,
+        elevation: 20,
+        notchSmoothness: NotchSmoothness.sharpEdge,
+        onTap: (index) => setState(() => _bottomNavIndex = index),
+        //other params
+      ),
       appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
@@ -103,13 +118,18 @@ class _MyHomePageState extends State<MyHomePage> {
       )),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Column(
+        child: ListView(
           // spacing: 20,
           // runSpacing: 20,
           children: <Widget>[
             Container(
               decoration: const BoxDecoration(
                   color: Colors.indigo,
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('images/1.png'),
+                      colorFilter:
+                          ColorFilter.mode(Colors.indigo, BlendMode.color)),
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -260,14 +280,20 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       width: 150,
                       height: 100,
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.fitHeight,
+                              image: AssetImage('images/1.png'),
+                              alignment: Alignment(-0.6, 20),
+                              colorFilter: ColorFilter.mode(
+                                  Colors.indigo, BlendMode.color)),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           color: Colors.indigo),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "\$45.00",
                             style: TextStyle(
@@ -293,6 +319,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       height: 100,
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('images/1.png'),
+                              fit: BoxFit.cover,
+                              repeat: ImageRepeat.repeat,
+                              alignment: Alignment(-1, 20),
+                              colorFilter: ColorFilter.mode(
+                                  Colors.orange, BlendMode.color)),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           color: Colors.orange),
                       child: Column(
@@ -316,12 +349,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
-                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Container(
                       width: 150,
                       height: 100,
                       padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.fitHeight,
+                              image: AssetImage('images/1.png'),
+                              alignment: Alignment(-0.6, 20),
+                              colorFilter: ColorFilter.mode(
+                                  Colors.indigo, BlendMode.color)),
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           color: Colors.indigo),
                       child: Column(
@@ -346,7 +387,268 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ],
-                ))
+                )),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Recent transactions",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                TextButton(
+                    onPressed: () => print("see all"),
+                    child: Row(
+                      children: [Text("See all")],
+                    ))
+              ],
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade200,
+                        spreadRadius: 0,
+                        blurRadius: 20)
+                  ],
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  color: Colors.white),
+              child: Column(
+                children: [
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.fastfood,
+                          color: Colors.orange,
+                          size: 40,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Food & Beverage",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Text("Today")
+                                ]),
+                          ),
+                        ),
+                        Text(
+                          "-\$10.99",
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.fastfood,
+                          color: Colors.orange,
+                          size: 40,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Food & Beverage",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Text("Today")
+                                ]),
+                          ),
+                        ),
+                        Text(
+                          "-\$10.99",
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.fastfood,
+                          color: Colors.orange,
+                          size: 40,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Food & Beverage",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Text("Today")
+                                ]),
+                          ),
+                        ),
+                        Text(
+                          "-\$10.99",
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.fastfood,
+                          color: Colors.orange,
+                          size: 40,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Food & Beverage",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Text("Today")
+                                ]),
+                          ),
+                        ),
+                        Text(
+                          "-\$10.99",
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.fastfood,
+                          color: Colors.orange,
+                          size: 40,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Food & Beverage",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Text("Today")
+                                ]),
+                          ),
+                        ),
+                        Text(
+                          "-\$10.99",
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          Icons.fastfood,
+                          color: Colors.orange,
+                          size: 40,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Food & Beverage",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
+                                  Text("Today")
+                                ]),
+                          ),
+                        ),
+                        Text(
+                          "-\$10.99",
+                          style: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
