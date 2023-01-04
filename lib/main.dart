@@ -117,11 +117,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       )),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: ListView(
-          // spacing: 20,
-          // runSpacing: 20,
           children: <Widget>[
+            SizedBox(height: 10,),
             Container(
               decoration: const BoxDecoration(
                   color: Colors.indigo,
