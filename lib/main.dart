@@ -1,5 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:letbudget/home/home.dart';
+import 'package:letbudget/utils/utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,6 +58,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _bottomNavIndex = 0;
+  Converter converter = Converter.pln();
 
   void _incrementCounter() {
     setState(() {
@@ -79,7 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
-        icons: [Icons.home_filled, Icons.insert_chart_outlined_sharp, Icons.credit_card, Icons.person],
+        icons: const [
+          Icons.home_filled,
+          Icons.insert_chart_outlined_sharp,
+          Icons.credit_card,
+          Icons.person
+        ],
         activeIndex: _bottomNavIndex,
         gapLocation: GapLocation.center,
         activeColor: Colors.indigo,
@@ -120,119 +128,17 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: ListView(
           children: <Widget>[
-            SizedBox(height: 10,),
-            Container(
-              decoration: const BoxDecoration(
-                  color: Colors.indigo,
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('images/1.png'),
-                      colorFilter:
-                          ColorFilter.mode(Colors.indigo, BlendMode.color)),
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  children: [
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "\$2,821.00",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30),
-                          ),
-                          Text(
-                            "Your balance",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w200),
-                          )
-                        ])
-                  ],
-                ),
-              ),
+            const SizedBox(
+              height: 10,
             ),
-            SizedBox(
+            SummaryBanner(
+             converter.formatValue(282133),
+            ),
+            const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Wrap(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.indigo.shade50,
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Icon(
-                          Icons.arrow_downward,
-                          color: Colors.indigo,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Income", style: TextStyle(color: Colors.grey)),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "\$460.00",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                Wrap(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.indigo.shade50,
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Icon(
-                          Icons.arrow_upward,
-                          color: Colors.orange,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Expences",
-                              style: TextStyle(color: Colors.grey)),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "\$460.00",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
+            const IncomeExpensesSection(income: 46900, expenses: 10000),
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -240,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       "Your wallet",
                       style:
@@ -258,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextButton(
                     onPressed: () => print("add new wallet"),
                     child: Row(
-                      children: [
+                      children: const [
                         Icon(
                           Icons.add,
                           size: 20,
@@ -310,14 +216,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Container(
                       width: 150,
                       height: 100,
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('images/1.png'),
                               fit: BoxFit.cover,
@@ -330,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "\$150.00",
                             style: TextStyle(
@@ -348,14 +254,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Container(
                       width: 150,
                       height: 100,
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               fit: BoxFit.fitHeight,
                               image: AssetImage('images/1.png'),
@@ -367,7 +273,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "\$60.00",
                             style: TextStyle(
@@ -387,7 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 )),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -395,7 +301,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       "Recent transactions",
                       style:
@@ -406,12 +312,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextButton(
                     onPressed: () => print("see all"),
                     child: Row(
-                      children: [Text("See all")],
+                      children: const [Text("See all")],
                     ))
               ],
             ),
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -419,7 +325,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         spreadRadius: 0,
                         blurRadius: 20)
                   ],
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   color: Colors.white),
               child: Column(
                 children: [
@@ -427,7 +333,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.fastfood,
                           color: Colors.orange,
                           size: 40,
@@ -438,7 +344,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "Food & Beverage",
                                     style: TextStyle(
@@ -449,7 +355,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ]),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "-\$10.99",
                           style: TextStyle(
                               color: Colors.red, fontWeight: FontWeight.bold),
@@ -457,14 +363,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.fastfood,
                           color: Colors.orange,
                           size: 40,
@@ -475,7 +381,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "Food & Beverage",
                                     style: TextStyle(
@@ -486,7 +392,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ]),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "-\$10.99",
                           style: TextStyle(
                               color: Colors.red, fontWeight: FontWeight.bold),
@@ -494,14 +400,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.fastfood,
                           color: Colors.orange,
                           size: 40,
@@ -512,7 +418,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "Food & Beverage",
                                     style: TextStyle(
@@ -523,7 +429,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ]),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "-\$10.99",
                           style: TextStyle(
                               color: Colors.red, fontWeight: FontWeight.bold),
@@ -531,14 +437,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.fastfood,
                           color: Colors.orange,
                           size: 40,
@@ -549,7 +455,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "Food & Beverage",
                                     style: TextStyle(
@@ -560,7 +466,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ]),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "-\$10.99",
                           style: TextStyle(
                               color: Colors.red, fontWeight: FontWeight.bold),
@@ -568,14 +474,49 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Icon(
+                        Icons.fastfood,
+                        color: Colors.orange,
+                        size: 40,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  "Food & Beverage",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                Text("Today")
+                              ]),
+                        ),
+                      ),
+                      const Text(
+                        "-\$10.99",
+                        style: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.fastfood,
                           color: Colors.orange,
                           size: 40,
@@ -586,7 +527,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "Food & Beverage",
                                     style: TextStyle(
@@ -597,7 +538,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ]),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "-\$10.99",
                           style: TextStyle(
                               color: Colors.red, fontWeight: FontWeight.bold),
@@ -605,44 +546,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.fastfood,
-                          color: Colors.orange,
-                          size: 40,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Food & Beverage",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Text("Today")
-                                ]),
-                          ),
-                        ),
-                        Text(
-                          "-\$10.99",
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],
@@ -656,6 +560,95 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class IncomeExpensesSection extends StatelessWidget {
+  final int income;
+  final int expenses;
+
+  const IncomeExpensesSection({
+    required this.income,
+    required this.expenses,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Wrap(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.indigo.shade50,
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Icon(
+                  Icons.arrow_downward,
+                  color: Colors.indigo,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text("Income", style: TextStyle(color: Colors.grey)),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "\$460.00",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        Wrap(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.indigo.shade50,
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Icon(
+                  Icons.arrow_upward,
+                  color: Colors.orange,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text("Expenses",
+                      style: TextStyle(color: Colors.grey)),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "\$460.00",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
