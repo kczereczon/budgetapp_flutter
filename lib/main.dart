@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 10,
             ),
             SummaryBanner(
-             converter.formatValue(282133),
+              converter.formatValue(282133),
             ),
             const SizedBox(
               height: 20,
@@ -141,158 +141,25 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Your wallet",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "2 Budgets, 1 Savings",
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w300),
-                    )
-                  ],
-                ),
-                TextButton(
-                    onPressed: () => print("add new wallet"),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.add,
-                          size: 20,
-                        ),
-                        Text("Add new")
-                      ],
-                    ))
+            WalletsSection(
+              wallets: [
+                Wallet(
+                    money: converter.formatValue(4500),
+                    image: AssetImage("images/food.jpg"),
+                    category: "Food",
+                    type: "budget"),
+                Wallet(
+                    money: converter.formatValue(10000),
+                    image: AssetImage("images/clothing.jpg"),
+                    category: "Clothing",
+                    type: "budget"),
+                 Wallet(
+                    money: converter.formatValue(100000),
+                    image: AssetImage("images/home.webp"),
+                    category: "Home",
+                    type: "savings")
               ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-                height: 200,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Container(
-                      width: 150,
-                      height: 100,
-                      padding: const EdgeInsets.all(20),
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.fitHeight,
-                              image: AssetImage('images/1.png'),
-                              alignment: Alignment(-0.6, 20),
-                              colorFilter: ColorFilter.mode(
-                                  Colors.indigo, BlendMode.color)),
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Colors.indigo),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "\$45.00",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Food",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w300),
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      width: 150,
-                      height: 100,
-                      padding: const EdgeInsets.all(20),
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('images/1.png'),
-                              fit: BoxFit.cover,
-                              repeat: ImageRepeat.repeat,
-                              alignment: Alignment(-1, 20),
-                              colorFilter: ColorFilter.mode(
-                                  Colors.orange, BlendMode.color)),
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Colors.orange),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "\$150.00",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Clothing",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w300),
-                          )
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      width: 150,
-                      height: 100,
-                      padding: const EdgeInsets.all(20),
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.fitHeight,
-                              image: AssetImage('images/1.png'),
-                              alignment: Alignment(-0.6, 20),
-                              colorFilter: ColorFilter.mode(
-                                  Colors.indigo, BlendMode.color)),
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Colors.indigo),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "\$60.00",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Parking",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w300),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                )),
             const SizedBox(
               height: 20,
             ),
@@ -487,8 +354,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 10.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [
@@ -564,6 +430,140 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+class WalletsSection extends StatelessWidget {
+  final List<Wallet> wallets;
+
+  const WalletsSection({
+    required this.wallets,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "Your wallet",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "2 Budgets, 1 Savings",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w300),
+                )
+              ],
+            ),
+            TextButton(
+                onPressed: () => print("add new wallet"),
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.add,
+                      size: 20,
+                    ),
+                    Text("Add new")
+                  ],
+                ))
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+            height: 200,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: wallets.length,
+                itemBuilder: ((context, index) => wallets[index]))),
+      ],
+    );
+  }
+}
+
+class Wallet extends StatelessWidget {
+  final String money;
+  final ImageProvider image;
+  final String category;
+  final String type;
+
+  const Wallet({
+    required this.money,
+    required this.image,
+    required this.category,
+    required this.type,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 10.0),
+      child: SizedBox(
+        width: 150,
+        height: 100,
+        child: Container(padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.fitHeight,
+                image: image,
+                alignment: const Alignment(-0.6, 20),
+                colorFilter: ColorFilter.mode(
+                    WalletTypeColorBudgetFactory.getColor(type),
+                    BlendMode.color)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            color: Colors.indigo),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              money,
+              style: const TextStyle(shadows: [
+                BoxShadow(
+                  color: Colors.black,
+                  offset: Offset(0, 0),
+                  blurRadius: 10.0,
+                ),
+              ], color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              category,
+              style: const TextStyle(shadows: [
+                BoxShadow(
+                  color: Colors.black,
+                  offset: Offset(0, 0),
+                  blurRadius: 10.0,
+                )
+              ], color: Colors.white, fontSize: 20, fontWeight: FontWeight.w300),
+            )
+          ],
+        ),),
+      ),
+    );
+  }
+}
+
+class WalletTypeColorBudgetFactory {
+  static Color getColor(String type) {
+    switch (type) {
+      case 'budget':
+        return Colors.indigo;
+      case 'savings':
+        return Colors.orange;
+      default:
+        return Colors.yellow;
+    }
+  }
+}
+
 class IncomeExpensesSection extends StatelessWidget {
   final int income;
   final int expenses;
@@ -605,8 +605,7 @@ class IncomeExpensesSection extends StatelessWidget {
                   ),
                   Text(
                     "\$460.00",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   )
                 ],
               ),
@@ -633,15 +632,13 @@ class IncomeExpensesSection extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Text("Expenses",
-                      style: TextStyle(color: Colors.grey)),
+                  Text("Expenses", style: TextStyle(color: Colors.grey)),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
                     "\$460.00",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   )
                 ],
               ),
