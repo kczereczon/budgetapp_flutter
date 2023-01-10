@@ -62,23 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
@@ -485,82 +474,6 @@ class WalletsSection extends StatelessWidget {
                 itemBuilder: ((context, index) => wallets[index]))),
       ],
     );
-  }
-}
-
-class Wallet extends StatelessWidget {
-  final String money;
-  final ImageProvider image;
-  final String category;
-  final String type;
-
-  const Wallet({
-    required this.money,
-    required this.image,
-    required this.category,
-    required this.type,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 10.0),
-      child: SizedBox(
-        width: 150,
-        height: 100,
-        child: Container(padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fitHeight,
-                image: image,
-                alignment: const Alignment(-0.6, 20),
-                colorFilter: ColorFilter.mode(
-                    WalletTypeColorBudgetFactory.getColor(type),
-                    BlendMode.color)),
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-            color: Colors.indigo),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              money,
-              style: const TextStyle(shadows: [
-                BoxShadow(
-                  color: Colors.black,
-                  offset: Offset(0, 0),
-                  blurRadius: 10.0,
-                ),
-              ], color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              category,
-              style: const TextStyle(shadows: [
-                BoxShadow(
-                  color: Colors.black,
-                  offset: Offset(0, 0),
-                  blurRadius: 10.0,
-                )
-              ], color: Colors.white, fontSize: 20, fontWeight: FontWeight.w300),
-            )
-          ],
-        ),),
-      ),
-    );
-  }
-}
-
-class WalletTypeColorBudgetFactory {
-  static Color getColor(String type) {
-    switch (type) {
-      case 'budget':
-        return Colors.indigo;
-      case 'savings':
-        return Colors.orange;
-      default:
-        return Colors.yellow;
-    }
   }
 }
 
