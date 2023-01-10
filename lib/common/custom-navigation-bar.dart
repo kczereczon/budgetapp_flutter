@@ -28,7 +28,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
       inactiveColor: Colors.grey,
       elevation: 20,
       notchSmoothness: NotchSmoothness.sharpEdge,
-      onTap: (index) => setState(() => _bottomNavIndex = index),
+      onTap: (index) => setState(() { widget.onTap(index); _bottomNavIndex = index; }),
     );
   }
 }
