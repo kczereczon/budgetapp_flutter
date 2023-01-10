@@ -68,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
@@ -84,11 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 20,
         notchSmoothness: NotchSmoothness.sharpEdge,
         onTap: (index) => setState(() => _bottomNavIndex = index),
-        //other params
       ),
       appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -172,241 +170,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ))
               ],
             ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey.shade200,
-                        spreadRadius: 0,
-                        blurRadius: 20)
-                  ],
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  color: Colors.white),
-              child: Column(
-                children: [
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.fastfood,
-                          color: Colors.orange,
-                          size: 40,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Food & Beverage",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Text("Today")
-                                ]),
-                          ),
-                        ),
-                        const Text(
-                          "-\$10.99",
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.fastfood,
-                          color: Colors.orange,
-                          size: 40,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Food & Beverage",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Text("Today")
-                                ]),
-                          ),
-                        ),
-                        const Text(
-                          "-\$10.99",
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.fastfood,
-                          color: Colors.orange,
-                          size: 40,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Food & Beverage",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Text("Today")
-                                ]),
-                          ),
-                        ),
-                        const Text(
-                          "-\$10.99",
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.fastfood,
-                          color: Colors.orange,
-                          size: 40,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Food & Beverage",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Text("Today")
-                                ]),
-                          ),
-                        ),
-                        const Text(
-                          "-\$10.99",
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Icon(
-                        Icons.fastfood,
-                        color: Colors.orange,
-                        size: 40,
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  "Food & Beverage",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                                Text("Today")
-                              ]),
-                        ),
-                      ),
-                      const Text(
-                        "-\$10.99",
-                        style: TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.fastfood,
-                          color: Colors.orange,
-                          size: 40,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Food & Beverage",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Text("Today")
-                                ]),
-                          ),
-                        ),
-                        const Text(
-                          "-\$10.99",
-                          style: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
-              ),
-            )
+            RecentTransactionsSection(records: [
+              Record(icon: Icons.fastfood, label: "Food & Beverage", date: "Today 23:32", isExpense: true, value: converter.formatValue(1099), color: Colors.orange),
+              Record(icon: Icons.attach_money, label: "Pension", date: "Today 10:10", isExpense: false, value: converter.formatValue(830000), color: Colors.blue)
+            ])
           ],
         ),
       ),
@@ -415,6 +182,96 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class RecentTransactionsSection extends StatelessWidget {
+  const RecentTransactionsSection({
+    Key? key,
+    required this.records,
+  }) : super(key: key);
+
+  final List<Record> records;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 400,
+      child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        itemCount: records.length, itemBuilder: (BuildContext context, int index) { return records[index]; },
+      )
+    );
+  }
+}
+
+class Record extends StatelessWidget {
+
+  final IconData icon;
+  final Color color;
+  final String label;
+  final String date;
+  final bool isExpense;
+  final String value;
+
+  const Record({
+    Key? key,
+    required this.icon,
+    required this.label,
+    required this.date,
+    required this.isExpense,
+    required this.value,
+    required this.color
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.shade200,
+                spreadRadius: 0,
+                blurRadius: 20)
+          ],
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          color: Colors.white),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(
+            icon,
+            color: color,
+            size: 40,
+          ),
+          Expanded(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8, horizontal: 10.0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      label,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                    Text(date)
+                  ]),
+            ),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+                color: (() => isExpense ? Colors.red : Colors.green)(), fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
     );
   }
 }
