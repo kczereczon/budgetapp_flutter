@@ -1,7 +1,10 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:letbudget/home/home.dart';
 import 'package:letbudget/utils/utils.dart';
+
+import 'common/common.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,7 +60,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  int _bottomNavIndex = 0;
+  int _currentScreenIndex = 0;
   Converter converter = Converter.pln();
 
   void _incrementCounter() {
@@ -68,49 +71,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        icons: const [
-          Icons.home_filled,
-          Icons.insert_chart_outlined_sharp,
-          Icons.credit_card,
-          Icons.person
-        ],
-        activeIndex: _bottomNavIndex,
-        gapLocation: GapLocation.center,
-        activeColor: Colors.indigo,
-        inactiveColor: Colors.grey,
-        elevation: 20,
-        notchSmoothness: NotchSmoothness.sharpEdge,
-        onTap: (index) => setState(() => _bottomNavIndex = index),
-      ),
+      bottomNavigationBar: CustomNavigationBar(onTap: (index) => setState(() => _currentScreenIndex = index)),
       appBar: AppBar(
-          title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "Good morning,",
-                style: TextStyle(color: Colors.grey),
-              ),
-              Text(
-                "Krzyszof Czereczon",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          IconButton(
-              onPressed: () => print('Notification pressed'),
-              icon: const Icon(
-                Icons.notifications,
-                color: Colors.grey,
-              ))
-        ],
-      )),
+          title: const CustomAppBar(user: "Krzysztof Czereczon", notifications: 1)),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: ListView(
@@ -124,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 20,
             ),
-            const IncomeExpensesSection(income: 46900, expenses: 10000),
+            IncomeExpensesSection(income: converter.formatValue(46900), expenses: converter.formatValue(10000)),
             const SizedBox(
               height: 20,
             ),
@@ -140,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     image: AssetImage("images/clothing.jpg"),
                     category: "Clothing",
                     type: "budget"),
-                 Wallet(
+                Wallet(
                     money: converter.formatValue(100000),
                     image: AssetImage("images/home.webp"),
                     category: "Home",
@@ -150,29 +115,24 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Recent transactions",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                TextButton(
-                    onPressed: () => print("see all"),
-                    child: Row(
-                      children: const [Text("See all")],
-                    ))
-              ],
-            ),
             RecentTransactionsSection(records: [
-              Record(icon: Icons.fastfood, label: "Food & Beverage", date: "Today 23:32", isExpense: true, value: converter.formatValue(1099), color: Colors.orange),
-              Record(icon: Icons.attach_money, label: "Pension", date: "Today 10:10", isExpense: false, value: converter.formatValue(830000), color: Colors.blue)
+              Record(
+                icon: Icons.fastfood,
+                label: "Food & Beverage",
+                date: "Today 23:32",
+                isExpense: true,
+                value: converter.formatValue(1099),
+                color: Colors.orange,
+                category: "Food",
+              ),
+              Record(
+                  icon: Icons.attach_money,
+                  label: "Pension",
+                  date: "Today 10:10",
+                  isExpense: false,
+                  value: converter.formatValue(830000),
+                  color: Colors.blue,
+                  category: "Pension")
             ])
           ],
         ),
@@ -186,236 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class RecentTransactionsSection extends StatelessWidget {
-  const RecentTransactionsSection({
-    Key? key,
-    required this.records,
-  }) : super(key: key);
 
-  final List<Record> records;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        itemCount: records.length, itemBuilder: (BuildContext context, int index) { return records[index]; },
-      )
-    );
-  }
-}
 
-class Record extends StatelessWidget {
 
-  final IconData icon;
-  final Color color;
-  final String label;
-  final String date;
-  final bool isExpense;
-  final String value;
-
-  const Record({
-    Key? key,
-    required this.icon,
-    required this.label,
-    required this.date,
-    required this.isExpense,
-    required this.value,
-    required this.color
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey.shade200,
-                spreadRadius: 0,
-                blurRadius: 20)
-          ],
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          color: Colors.white),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(
-            icon,
-            color: color,
-            size: 40,
-          ),
-          Expanded(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8, horizontal: 10.0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      label,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                    Text(date)
-                  ]),
-            ),
-          ),
-          Text(
-            value,
-            style: TextStyle(
-                color: (() => isExpense ? Colors.red : Colors.green)(), fontWeight: FontWeight.bold),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class WalletsSection extends StatelessWidget {
-  final List<Wallet> wallets;
-
-  const WalletsSection({
-    required this.wallets,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "Your wallet",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "2 Budgets, 1 Savings",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w300),
-                )
-              ],
-            ),
-            TextButton(
-                onPressed: () => print("add new wallet"),
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.add,
-                      size: 20,
-                    ),
-                    Text("Add new")
-                  ],
-                ))
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        SizedBox(
-            height: 200,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: wallets.length,
-                itemBuilder: ((context, index) => wallets[index]))),
-      ],
-    );
-  }
-}
-
-class IncomeExpensesSection extends StatelessWidget {
-  final int income;
-  final int expenses;
-
-  const IncomeExpensesSection({
-    required this.income,
-    required this.expenses,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Wrap(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.indigo.shade50,
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Icon(
-                  Icons.arrow_downward,
-                  color: Colors.indigo,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text("Income", style: TextStyle(color: Colors.grey)),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "\$460.00",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-        Wrap(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.indigo.shade50,
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Icon(
-                  Icons.arrow_upward,
-                  color: Colors.orange,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text("Expenses", style: TextStyle(color: Colors.grey)),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "\$460.00",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ],
-    );
-  }
-}
