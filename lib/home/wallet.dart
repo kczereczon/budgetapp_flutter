@@ -29,9 +29,9 @@ class Wallet extends StatelessWidget {
                 image: image,
                 alignment: const Alignment(-0.6, 20),
                 colorFilter: ColorFilter.mode(
-                    WalletTypeColorBudgetFactory.getColor(type),
+                    WalletTypeColorBudgetFactory.getColor(type, context),
                     BlendMode.color)),
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
             color: Colors.indigo),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,

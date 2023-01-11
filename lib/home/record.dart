@@ -26,16 +26,16 @@ class Record extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          color: Colors.white),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          color: (<Color>() => Theme.of(context).brightness == Brightness.dark ? Theme.of(context).primaryColorDark : Theme.of(context).primaryColorLight)()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             padding: EdgeInsets.all(15),
             decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                color: Colors.indigo[50]),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                color: (<Color>() => Theme.of(context).brightness == Brightness.dark ? Theme.of(context).primaryColorLight : Theme.of(context).primaryColorDark)()),
             child: Icon(
               icon,
               color: color,

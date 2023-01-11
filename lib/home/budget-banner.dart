@@ -8,13 +8,13 @@ class SummaryBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           color: Colors.indigo,
           image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage('images/1.png'),
-              colorFilter: ColorFilter.mode(Colors.indigo, BlendMode.color)),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+              colorFilter: ColorFilter.mode(Theme.of(context).primaryColor, BlendMode.color)),
+          borderRadius: BorderRadius.all(Radius.circular(8))),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(

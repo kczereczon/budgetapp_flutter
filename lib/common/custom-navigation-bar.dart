@@ -22,12 +22,12 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
         Icons.credit_card,
         Icons.person
       ],
+      backgroundColor: Theme.of(context).navigationBarTheme.backgroundColor,
       activeIndex: _bottomNavIndex,
       gapLocation: GapLocation.center,
-      activeColor: Colors.indigo,
+      activeColor: Theme.of(context).primaryColor,
       inactiveColor: Colors.grey,
       elevation: 20,
-      notchSmoothness: NotchSmoothness.sharpEdge,
       onTap: (index) => setState(() { widget.onTap(index); _bottomNavIndex = index; }),
     );
   }

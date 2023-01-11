@@ -19,7 +19,7 @@ class IncomeExpensesSection extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.indigo.shade50,
+                color: (<Color>() => Theme.of(context).brightness == Brightness.dark ? Theme.of(context).primaryColorLight : Theme.of(context).primaryColorDark)(),
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
               child: const Padding(
@@ -52,7 +52,7 @@ class IncomeExpensesSection extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.indigo.shade50,
+                color: (<Color>() => Theme.of(context).brightness == Brightness.dark ? Theme.of(context).primaryColorLight : Theme.of(context).primaryColorDark)(),
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
               ),
               child: const Padding(

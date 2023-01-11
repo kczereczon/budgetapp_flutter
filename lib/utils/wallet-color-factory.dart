@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class WalletTypeColorBudgetFactory {
-  static Color getColor(String type) {
+  static Color getColor(String type, BuildContext context) {
     switch (type) {
       case 'budget':
-        return Colors.indigo;
+        return Theme.of(context).primaryColor;
       case 'savings':
         return Colors.orange;
       default:
