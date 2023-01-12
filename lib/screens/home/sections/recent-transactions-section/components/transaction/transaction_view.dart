@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Record extends StatelessWidget {
+class Transaction extends StatelessWidget {
   final IconData icon;
   final Color color;
   final String label;
@@ -9,7 +9,7 @@ class Record extends StatelessWidget {
   final bool isExpense;
   final String value;
 
-  const Record({
+  const Transaction({
     Key? key,
     required this.icon,
     required this.label,

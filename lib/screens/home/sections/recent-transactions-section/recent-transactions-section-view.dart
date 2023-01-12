@@ -7,7 +7,7 @@ class RecentTransactionsSection extends StatelessWidget {
     required this.records,
   }) : super(key: key);
 
-  final List<Record> records;
+  final List<Transaction> records;
 
   @override
   Widget build(BuildContext context) {

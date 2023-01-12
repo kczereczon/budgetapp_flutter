@@ -55,7 +55,7 @@ class HomeView extends StatelessWidget {
               height: 20,
             ),
             RecentTransactionsSection(records: [
-              Record(
+              Transaction(
                 icon: Icons.fastfood,
                 label: "Food & Beverage",
                 date: "Today 23:32",
@@ -64,7 +64,7 @@ class HomeView extends StatelessWidget {
                 color: Colors.orange,
                 category: "Food",
               ),
-              Record(
+              Transaction(
                   icon: Icons.attach_money,
                   label: "Pension",
                   date: "Today 10:10",

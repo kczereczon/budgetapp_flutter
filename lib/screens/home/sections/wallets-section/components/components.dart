@@ -1,1 +1,1 @@
-export 'wallet.dart';
+export 'wallet/wallet_view.dart';
