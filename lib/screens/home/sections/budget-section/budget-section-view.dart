@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SummaryBanner extends StatelessWidget {
+class BudgetSection extends StatelessWidget {
   final String money;
 
-  const SummaryBanner(this.money, {Key? key}) : super(key: key);
+  const BudgetSection(this.money, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

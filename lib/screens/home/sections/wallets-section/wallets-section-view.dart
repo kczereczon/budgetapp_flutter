@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:letbudget/screens/home/sections/wallets-section/components/components.dart';
 
 class WalletsSection extends StatelessWidget {
   final List<Wallet> wallets;

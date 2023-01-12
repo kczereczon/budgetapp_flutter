@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:letbudget/common/common.dart';
-import 'package:letbudget/home/budget-banner.dart';
-import 'package:letbudget/home/home.dart';
+import 'package:letbudget/screens/home/sections/sections.dart';
 import 'package:letbudget/utils/converter.dart';
 
 class HomeView extends StatelessWidget {
@@ -23,7 +22,7 @@ class HomeView extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            SummaryBanner(
+            BudgetSection(
               converter.formatValue(282133),
             ),
             const SizedBox(

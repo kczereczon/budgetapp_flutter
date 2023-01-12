@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:letbudget/screens/home/sections/recent-transactions-section/components/components.dart';
 
 class RecentTransactionsSection extends StatelessWidget {
   const RecentTransactionsSection({
