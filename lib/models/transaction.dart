@@ -10,8 +10,8 @@ class Transaction extends Equatable {
   final bool isExpense;
   final Subcategory subcategory;
 
-  const Transaction.name(this.id, this.label, this.createdAt, this.amount,
-      this.isExpense, this.subcategory);
+  const Transaction({required this.id, required this.label, required this.createdAt, required this.amount,
+      required this.isExpense, required this.subcategory});
 
   @override
   // TODO: implement props
