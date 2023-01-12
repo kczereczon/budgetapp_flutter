@@ -39,6 +39,7 @@ dependencies:
   animated_bottom_navigation_bar: ^1.1.0+1
   badges: ^2.0.3
   flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
