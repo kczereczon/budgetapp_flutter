@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:letbudget/core/transactions_bloc.dart';
 import 'package:letbudget/models/models.dart';
 import 'package:letbudget/screens/home/sections/budget-section/budget-section.dart';
 import 'package:letbudget/utils/converter.dart';
@@ -13,17 +14,23 @@ part 'budget_section_state.dart';
 
 class BudgetSectionBloc extends Bloc<BudgetSectionEvent, BudgetSectionState> {
   final Converter converter;
+  final _transactionsBloc = TransactionsBloc();
 
   BudgetSectionBloc({required this.converter}) : super(BudgetSectionInitial()) {
-    on<BudgetSectionFetched>(_onBudgetSectionFetched);
+
+    on<FetchBudgetSection>(_onBudgetSectionFetched);
+
+    _transactionsBloc.transactions.listen((transactions) {
+      add(FetchBudgetSection(transactions: transactions));
+    });
   }
 
   Future<void> _onBudgetSectionFetched(
-    BudgetSectionFetched event,
+    FetchBudgetSection event,
     Emitter<BudgetSectionState> emit,
   ) async {
     try {
-      List<Transaction> transactions = await _fetchTransactions();
+      List<Transaction> transactions = event.transactions;
 
       int amount = 0;
 
@@ -36,42 +43,5 @@ class BudgetSectionBloc extends Bloc<BudgetSectionEvent, BudgetSectionState> {
     } catch (_) {
       emit(BudgetSectionFailure());
     }
-  }
-
-  Future<List<Transaction>> _fetchTransactions() async {
-    return Future<List<Transaction>>.delayed(Duration(seconds: 3), () {
-      return <Transaction>[
-        Transaction(
-            id: 1,
-            label: 'Pension',
-            amount: 830000,
-            isExpense: false,
-            createdAt: DateTime.now(),
-            subcategory: const Subcategory(
-                id: 1,
-                name: "Super category",
-                category: Category(id: 1, name: "Super"))),
-        Transaction(
-            id: 1,
-            label: 'Food and good',
-            amount: 3000,
-            isExpense: true,
-            createdAt: DateTime.now(),
-            subcategory: const Subcategory(
-                id: 1,
-                name: "Super category",
-                category: Category(id: 1, name: "Super"))),
-        Transaction(
-            id: 1,
-            label: 'Food and good',
-            amount: 1399,
-            isExpense: true,
-            createdAt: DateTime.now(),
-            subcategory: const Subcategory(
-                id: 1,
-                name: "Super category",
-                category: Category(id: 1, name: "Super"))),
-      ];
-    });
   }
 }

@@ -17,21 +17,17 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
     // Fetch transactions from API or file
     List<Transaction> fetchedTransactions = await _fetchTransactions();
     _transactions.sink.add(fetchedTransactions);
+
   }
 
-  @override
-  Stream<TransactionsState> mapEventToState(TransactionsEvent event) async* {
-    if (event is FetchTransactions) {
-      yield* _mapFetchTransactionsToState();
-    }
-  }
+  TransactionsBloc() : super(TransactionsLoading()) {
+    on<FetchTransactions>((event, emit) {
+      emit(TransactionsLoading());
+      fetchTransactions();
+      emit(TransactionsLoaded());
+    });
 
-  TransactionsBloc() : super(TransactionsLoading());
-
-  Stream<TransactionsState> _mapFetchTransactionsToState() async* {
-    yield TransactionsLoading();
-    fetchTransactions();
-    yield TransactionsLoaded();
+    add(FetchTransactions());
   }
 
   Future<List<Transaction>> _fetchTransactions() async {
