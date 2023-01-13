@@ -31,8 +31,7 @@ class HomeView extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              IncomeExpensesSection(income: converter.formatValue(46900),
-                  expenses: converter.formatValue(10000)),
+              IncomeExpensesSection(converter: converter,),
               const SizedBox(
                 height: 20,
               ),
