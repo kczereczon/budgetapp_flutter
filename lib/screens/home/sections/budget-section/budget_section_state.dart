@@ -5,9 +5,10 @@ enum BudgetSectionStatus { initial, success, failure }
 @immutable
 class BudgetSectionState extends Equatable {
   final int amount;
+  final String amountString;
   final BudgetSectionStatus status;
 
-  const BudgetSectionState({required this.amount, required this.status});
+  const BudgetSectionState({required this.amountString, required this.amount, required this.status});
 
   @override
   // TODO: implement props
@@ -16,13 +17,13 @@ class BudgetSectionState extends Equatable {
 }
 
 class BudgetSectionInitial extends BudgetSectionState {
-  BudgetSectionInitial(): super(amount: 0, status: BudgetSectionStatus.initial);
+  const BudgetSectionInitial(): super(amount: 0, amountString: "", status: BudgetSectionStatus.initial);
 
 }
 class BudgetSectionSuccess extends BudgetSectionState {
-  const BudgetSectionSuccess({required int amount}) : super(amount: amount, status: BudgetSectionStatus.success);
+  const BudgetSectionSuccess({required int amount, required String amountString}) : super(amount: amount, amountString: amountString, status: BudgetSectionStatus.success);
 }
 
 class BudgetSectionFailure extends BudgetSectionState {
-  const BudgetSectionFailure() : super(amount: 0, status: BudgetSectionStatus.failure);
+  const BudgetSectionFailure() : super(amount: 0, amountString: "", status: BudgetSectionStatus.failure);
 }

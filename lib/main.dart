@@ -30,7 +30,7 @@ class AppView extends StatelessWidget {
       builder: (_, theme) {
         return MaterialApp(
           theme: theme,
-          home: const HomePage(),
+          home: HomePage(),
         );
       },
     );

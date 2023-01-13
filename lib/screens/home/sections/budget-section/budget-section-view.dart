@@ -32,7 +32,7 @@ class BudgetSection extends StatelessWidget {
                     (<Widget>() {switch (state.status) {
                       case BudgetSectionStatus.success:
                         return Text(
-                          state.amount.toString(),
+                          state.amountString,
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
