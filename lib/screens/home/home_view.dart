@@ -57,25 +57,7 @@ class HomeView extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              RecentTransactionsSection(records: [
-                Transaction(
-                  icon: Icons.fastfood,
-                  label: "Food & Beverage",
-                  date: "Today 23:32",
-                  isExpense: true,
-                  value: converter.formatValue(1099),
-                  color: Colors.orange,
-                  category: "Food",
-                ),
-                Transaction(
-                    icon: Icons.attach_money,
-                    label: "Pension",
-                    date: "Today 10:10",
-                    isExpense: false,
-                    value: converter.formatValue(830000),
-                    color: Colors.blue,
-                    category: "Pension")
-              ])
+              RecentTransactionsSection(converter: converter,)
             ],
           ),
         ),

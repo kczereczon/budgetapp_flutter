@@ -4,6 +4,7 @@ import 'package:letbudget/core/transactions_bloc.dart';
 import 'package:letbudget/screens/home/home.dart';
 import 'package:letbudget/screens/home/sections/budget-section/budget-section.dart';
 import 'package:letbudget/screens/home/sections/income-expenses-section/income_expenses_section_bloc.dart';
+import 'package:letbudget/screens/home/sections/recent-transactions-section/recent-transactions-section.dart';
 import 'package:letbudget/utils/converter.dart';
 
 class HomePage extends StatelessWidget {
@@ -17,6 +18,7 @@ class HomePage extends StatelessWidget {
       BlocProvider<HomeBloc>(create: (_) => HomeBloc()),
       BlocProvider<BudgetSectionBloc>(create: (_) => BudgetSectionBloc(converter: converter)),
       BlocProvider<IncomeExpensesSectionBloc>(create: (_) => IncomeExpensesSectionBloc()),
+      BlocProvider<RecentTransactionsSectionBloc>(create: (_) => RecentTransactionsSectionBloc())
     ], child: HomeView());
   }
 

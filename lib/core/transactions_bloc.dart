@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:letbudget/models/models.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -42,7 +43,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
             subcategory: const Subcategory(
                 id: 1,
                 name: "Super category",
-                category: Category(id: 1, name: "Super"))),
+                category: Category(id: 1, name: "Super", icon: Icons.attach_money, color: Colors.blue))),
         Transaction(
             id: 1,
             label: 'Food and good',
@@ -52,7 +53,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
             subcategory: const Subcategory(
                 id: 1,
                 name: "Super category",
-                category: Category(id: 1, name: "Super"))),
+                category: Category(id: 1, name: "Super", icon: Icons.fastfood, color: Colors.orange))),
         Transaction(
             id: 1,
             label: 'Food and good',
@@ -62,7 +63,37 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
             subcategory: const Subcategory(
                 id: 1,
                 name: "Super category",
-                category: Category(id: 1, name: "Super"))),
+                category: Category(id: 1, name: "Super", icon: Icons.fastfood, color: Colors.orange))),
+        Transaction(
+            id: 1,
+            label: 'Food and good',
+            amount: 1399,
+            isExpense: true,
+            createdAt: DateTime.now(),
+            subcategory: const Subcategory(
+                id: 1,
+                name: "Super category",
+                category: Category(id: 1, name: "Super", icon: Icons.fastfood, color: Colors.orange))),
+        Transaction(
+            id: 1,
+            label: 'Food and good',
+            amount: 1399,
+            isExpense: true,
+            createdAt: DateTime.now(),
+            subcategory: const Subcategory(
+                id: 1,
+                name: "Super category",
+                category: Category(id: 1, name: "Super", icon: Icons.fastfood, color: Colors.orange))),
+        Transaction(
+            id: 1,
+            label: 'Food and good',
+            amount: 1399,
+            isExpense: true,
+            createdAt: DateTime.now(),
+            subcategory: const Subcategory(
+                id: 1,
+                name: "Super category",
+                category: Category(id: 1, name: "Super", icon: Icons.fastfood, color: Colors.orange))),
       ];
     });
   }
