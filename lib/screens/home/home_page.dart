@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:letbudget/core/transactions_bloc.dart';
+import 'package:letbudget/core/transactions/transactions_bloc.dart';
 import 'package:letbudget/screens/home/home.dart';
 import 'package:letbudget/screens/home/sections/budget-section/budget-section.dart';
 import 'package:letbudget/screens/home/sections/income-expenses-section/income_expenses_section_bloc.dart';

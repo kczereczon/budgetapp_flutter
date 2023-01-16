@@ -20,11 +20,11 @@ class WalletsSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  "Your wallet",
+                  "Your budgets",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "2 Budgets, 1 Savings",
+                  "2 Budgets",
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 15,

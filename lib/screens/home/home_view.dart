@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:letbudget/common/common.dart';
-import 'package:letbudget/core/transactions_bloc.dart';
+import 'package:letbudget/core/transactions/transactions_bloc.dart';
 import 'package:letbudget/screens/home/sections/sections.dart';
 import 'package:letbudget/utils/converter.dart';
 

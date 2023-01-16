@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:letbudget/core/transactions_bloc.dart';
+import 'package:letbudget/core/transactions/transactions_bloc.dart';
 import 'package:letbudget/models/models.dart';
 import 'package:letbudget/screens/home/sections/budget-section/budget-section.dart';
 import 'package:letbudget/utils/converter.dart';

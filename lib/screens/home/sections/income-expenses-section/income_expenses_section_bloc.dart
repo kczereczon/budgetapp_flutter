@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:letbudget/core/transactions_bloc.dart';
+import 'package:letbudget/core/transactions/transactions_bloc.dart';
 import 'package:letbudget/models/models.dart';
 import 'package:meta/meta.dart';
 

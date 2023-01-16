@@ -37,7 +37,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
         Transaction(
             id: 1,
             label: 'Pension',
-            amount: 830000,
+            amount: 1630000,
             isExpense: false,
             createdAt: DateTime.now(),
             subcategory: const Subcategory(
