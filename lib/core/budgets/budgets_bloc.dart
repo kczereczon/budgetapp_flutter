@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class BudgetsBloc extends Bloc<BudgetsEvent, BudgetsState> {
   }
 
   Future<List<Budget>> _fetchBudgets() async {
-    return Future<List<Budget>>.delayed(Duration(seconds: 3), () {
+    return Future<List<Budget>>.delayed(Duration(seconds: Random.secure().nextInt(3)), () {
       return <Budget>[
         Budget(transactions: [
           Transaction(
@@ -111,7 +112,7 @@ class BudgetsBloc extends Bloc<BudgetsEvent, BudgetsState> {
                 name: "Food at work"),
             imageUrl: "https://assets.entrepreneur.com/content/3x2/2000/eating-lunch-at-desk-work.jpg",
             id: 1,
-            amount: 100),
+            amount: 10000),
       ];
     });
   }

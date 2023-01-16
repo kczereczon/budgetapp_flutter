@@ -4,11 +4,13 @@ import 'package:letbudget/utils/utils.dart';
 
 class Wallet extends StatelessWidget {
   final String money;
+  final String moneyLeft;
   final Image image;
   final Subcategory subcategory;
 
   const Wallet({
     required this.money,
+    required this.moneyLeft,
     required this.image,
     required this.subcategory,
     Key? key,
@@ -37,14 +39,14 @@ class Wallet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              money,
+              "${moneyLeft} (${money})",
               style: const TextStyle(shadows: [
                 BoxShadow(
                   color: Colors.black,
                   offset: Offset(0, 0),
                   blurRadius: 10.0,
                 ),
-              ], color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+              ], color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Text(
               subcategory.name,
@@ -54,7 +56,7 @@ class Wallet extends StatelessWidget {
                   offset: Offset(0, 0),
                   blurRadius: 10.0,
                 )
-              ], color: Colors.white, fontSize: 20, fontWeight: FontWeight.w300),
+              ], color: Colors.white, fontSize: 15, fontWeight: FontWeight.w300),
             )
           ],
         ),),

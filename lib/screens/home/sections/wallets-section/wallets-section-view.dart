@@ -82,6 +82,8 @@ class WalletsSection extends StatelessWidget {
                         ? Wallet(
                             money: converter
                                 .formatValue(state.budgets[index].amount),
+                        moneyLeft: converter
+                            .formatValue(state.budgets[index].moneyLeft),
                             image: Image.network(state.budgets[index].imageUrl),
                             subcategory: state.budgets[index].subcategory)
                         : const WalletShimmer()))),

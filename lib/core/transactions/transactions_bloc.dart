@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   void fetchTransactions() async {
     // Fetch transactions from API or file
     List<Transaction> fetchedTransactions = await _fetchTransactions();
+    print('fetched transactions');
     _transactions.sink.add(fetchedTransactions);
 
   }
@@ -32,7 +34,7 @@ class TransactionsBloc extends Bloc<TransactionsEvent, TransactionsState> {
   }
 
   Future<List<Transaction>> _fetchTransactions() async {
-    return Future<List<Transaction>>.delayed(Duration(seconds: 3), () {
+    return Future<List<Transaction>>.delayed(Duration(seconds: Random.secure().nextInt(3)), () {
       return <Transaction>[
         Transaction(
             id: 1,
