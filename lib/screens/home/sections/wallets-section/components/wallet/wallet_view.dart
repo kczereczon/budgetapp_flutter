@@ -39,7 +39,7 @@ class Wallet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${moneyLeft} (${money})",
+              "$moneyLeft ($money)",
               style: const TextStyle(shadows: [
                 BoxShadow(
                   color: Colors.black,
