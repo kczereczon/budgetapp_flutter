@@ -36,23 +36,7 @@ class HomeView extends StatelessWidget {
                 height: 20,
               ),
               WalletsSection(
-                wallets: [
-                  Wallet(
-                      money: converter.formatValue(4500),
-                      image: AssetImage("images/food.jpg"),
-                      category: "Food",
-                      type: "budget"),
-                  Wallet(
-                      money: converter.formatValue(10000),
-                      image: AssetImage("images/clothing.jpg"),
-                      category: "Clothing",
-                      type: "budget"),
-                  Wallet(
-                      money: converter.formatValue(100000),
-                      image: AssetImage("images/home.webp"),
-                      category: "Home",
-                      type: "savings")
-                ],
+                converter: converter,
               ),
               const SizedBox(
                 height: 20,

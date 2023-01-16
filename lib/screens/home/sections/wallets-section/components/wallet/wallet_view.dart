@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:letbudget/models/models.dart';
 import 'package:letbudget/utils/utils.dart';
 
 class Wallet extends StatelessWidget {
   final String money;
-  final ImageProvider image;
-  final String category;
-  final String type;
+  final Image image;
+  final Subcategory subcategory;
 
   const Wallet({
     required this.money,
     required this.image,
-    required this.category,
-    required this.type,
+    required this.subcategory,
     Key? key,
   }) : super(key: key);
 
@@ -19,17 +18,17 @@ class Wallet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 10.0),
-      child: SizedBox(
+      child: Container(padding: const EdgeInsets.all(15),
+        margin: EdgeInsets.only(right: 10),
         width: 150,
         height: 100,
-        child: Container(padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fitHeight,
-                image: image,
+                image: image.image,
                 alignment: const Alignment(-0.6, 20),
                 colorFilter: ColorFilter.mode(
-                    WalletTypeColorBudgetFactory.getColor(type, context),
+                    subcategory.category.color,
                     BlendMode.color)),
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             color: Colors.indigo),
@@ -48,7 +47,7 @@ class Wallet extends StatelessWidget {
               ], color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
             ),
             Text(
-              category,
+              subcategory.name,
               style: const TextStyle(shadows: [
                 BoxShadow(
                   color: Colors.black,
@@ -59,7 +58,6 @@ class Wallet extends StatelessWidget {
             )
           ],
         ),),
-      ),
-    );
+      );
   }
 }
